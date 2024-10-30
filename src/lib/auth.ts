@@ -1,3 +1,4 @@
+// src/lib/auth.ts
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 
@@ -8,4 +9,10 @@ export async function getSession() {
 export async function getCurrentUser() {
   const session = await getSession()
   return session?.user
+}
+
+// Helper to check if user is authenticated
+export async function isAuthenticated() {
+  const session = await getSession()
+  return !!session
 }
